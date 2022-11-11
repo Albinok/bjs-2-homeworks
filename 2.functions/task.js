@@ -21,27 +21,41 @@ function getArrayParams(arr) {
 // Задание 2
 function worker(arr) {
   let sum = 0;
-  for (let i = 0; i < arr.length; i++) {
-    sum += arr[i];
+
+  for (let number of arr) {
+    sum += number;
   }
+
   return sum;
 }
 
 function makeWork(arrOfArr, func) {
-  let max;
-  let sum;
-  for (let i = 0; i < arrOfArr.length; i++) {
-    sum = worker(arrOfArr[0]);
-    if (sum > worker(arrOfArr[i])) {
+  let max = 0;
+
+  for (let number of arrOfArr) {
+    let sum = func(number);
+
+    if (sum > max) {
       max = sum;
-    } else {
-      max = worker(arrOfArr[i]);
     }
   }
+
   return max;
 }
 
 // Задание 3
 function worker2(arr) {
-  // Ваш код
+  let min = arr[0];
+  let max = arr[0];
+  let differences = 0;
+
+  for (let number of arr) {
+    if (number > max) {
+      max = number;
+    }
+    if ( number < min) {
+      min = number;
+    }
+  }
+  return differences = Math.abs(max - min);
 }
