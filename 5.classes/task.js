@@ -34,7 +34,7 @@ class Magazine extends PrintEditionItem {
 }
 
 class Book extends PrintEditionItem {
-  constructor(name, releaseDate, pagesCount, author){
+  constructor(author, name, releaseDate, pagesCount){
     super(name, releaseDate, pagesCount);
     this.author = author;
     this.type = 'book';
@@ -43,19 +43,19 @@ class Book extends PrintEditionItem {
 
 class NovelBook extends Book {
   constructor(author, name, releaseDate, pagesCount){
-    super(name, releaseDate, pagesCount, author);
+    super(author, name, releaseDate, pagesCount);
     this.type = 'novel';
   }
 }
 class FantasticBook extends Book {
   constructor(author, name, releaseDate, pagesCount){
-    super(name, releaseDate, pagesCount, author);
+    super(author, name, releaseDate, pagesCount);
     this.type = 'fantastic';
   }
 }
 class DetectiveBook extends Book {
   constructor(author, name, releaseDate, pagesCount){
-    super(name, releaseDate, pagesCount, author);
+    super(author, name, releaseDate, pagesCount);
     this.type = 'detective';
   }
 }
@@ -67,30 +67,33 @@ class Library {
   }
 
   addBook(book){
-    if (state.book > 30){
-      this.books = push(book)
+    if (book.state > 30){
+      this.books.push(book);
     }
   }
 
   findBookBy(type, value){
-    for(let book of this.book){
+    for(let book of this.books){
       if (book[type] === value){
         return book;
       }
-      return null;
     }
+    return null;
   }
 
   giveBookByName(bookName){
-    let bookSearch = this.findBookBy('name', bookName);
-    if (bookSearch){
-      
+    let searchBook = this.findBookBy('name', bookName);
+    if (searchBook){
+      this.books = this.books.filter((item) => {
+        if(item !== searchBook){
+          return true;
+        }
+      })
+      return searchBook;      
+    } else {
+      return null;
     }
-
   }
-
-
-
 }
 
 
