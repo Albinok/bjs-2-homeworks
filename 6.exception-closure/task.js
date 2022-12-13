@@ -1,6 +1,6 @@
 function parseCount(arg){
   let argFunction = parseInt(arg);
-  if (argFunction === NaN){
+  if (isNaN(argFunction)){
     throw new Error ('Невалидное значение')
   }
   return argFunction;
@@ -26,8 +26,7 @@ class Triangle {
   }
 
   getPerimeter(){
-    let P = this.side1 + this.side2 + this.side3;
-    return P;
+    return this.side1 + this.side2 + this.side3;
   }
 
   getArea(){
@@ -43,10 +42,10 @@ function getTriangle(side1, side2, side3){
   } catch (error) {
     return {
       getPerimeter(){
-        console.log('Ошибка! Треугольник не существует');
+        return 'Ошибка! Треугольник не существует';
       },
       getArea(){
-        console.log('Ошибка! Треугольник не существует');
+        return'Ошибка! Треугольник не существует';
       }
     }
   }
