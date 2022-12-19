@@ -25,11 +25,12 @@ class AlarmClock {
   }
   
   getCurrentFormattedTime(){
-    let date = new Date();
-    let hours = date.getHours();
-    let minutes = date.getMinutes();
+    let date = new Date().toLocaleTimeString("ru-Ru", {
+      hour: "2-digit",
+      minute: "2-digit",
+    });
 
-    return `${hours} : ${minutes}`;
+    return date;
   }
   start() {
     let checkClock = () => {
@@ -51,6 +52,10 @@ class AlarmClock {
   }
   printAlarms(){
     this.alarmCollection.forEach(item => console.log(`id: ${item.id}, time: ${item.time}`));
+  }
+  clearAlarms(){
+    this.stop();
+    this.alarmCollection = [];
   }
 }
 
